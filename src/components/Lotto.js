@@ -27,12 +27,12 @@ const Lotto = () => {
     for (let i = 0; i < winNumbers.length - 1; i++) {
       timeouts.current[i] = setTimeout(() => {
         setWinBalls((prevWinBalls) => [...prevWinBalls, winNumbers[i]]);
-      }, (i + 1) * 1000);
+      }, (i + 1) * 50);
     }
     timeouts.current[6] = setTimeout(() => {
       setBonus(winNumbers[6]);
       setRedo(true);
-    }, 7000);
+    }, 300);
     return () => {
       timeouts.current.forEach((v) => {
         clearTimeout(v);
@@ -56,7 +56,7 @@ const Lotto = () => {
       ))}
       <div>보너스</div>
       {bonus && <Ball key={bonus} number={bonus} />}
-      {redo && <button onClick={onClickRedo}>다시!</button>}
+      {redo && <button className='btnRedo' onClick={onClickRedo}>다시!</button>}
     </>
   );
 };
